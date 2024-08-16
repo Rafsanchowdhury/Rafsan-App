@@ -8,8 +8,8 @@ class MyDrawer extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("Pawan Kumar"),
-            accountEmail: Text("mtechviral@gmail.com"),
+            accountName: Text("Rafsan Chowdhury"),
+            accountEmail: Text("rafsnc90@gmail.com"),
             currentAccountPicture: CircleAvatar(
               backgroundImage: NetworkImage(
                   "https://images.unsplash.com/photo-1497551060073-4c5ab6435f12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"),
