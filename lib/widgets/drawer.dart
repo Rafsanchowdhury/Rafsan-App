@@ -17,7 +17,7 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text("Pawan Kumar"),
+            title: Text("Rafsan Chowdhury"),
             subtitle: Text("Developer"),
             trailing: Icon(Icons.edit),
             onTap: () {},
@@ -25,7 +25,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.email),
             title: Text("Email"),
-            subtitle: Text("mtechviral@gmail.com"),
+            subtitle: Text("rafsanc90@gmail.com"),
             trailing: Icon(Icons.edit),
           )
         ],

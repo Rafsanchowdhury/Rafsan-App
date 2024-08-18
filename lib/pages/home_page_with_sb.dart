@@ -5,11 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class HomePageFB extends StatelessWidget {
+class HomePageSB extends StatelessWidget {
   Future fetchData() async {
-    final url = "https://jsonplaceholder.typicode.com/photos";
-    var res = await http.get(url as Uri);
+    final url = Uri.parse("https://jsonplaceholder.typicode.com/photos");
+    var res = await http.get(url);
     var data = jsonDecode(res.body);
+    return data;
+  }
+
+  Stream<List<String>> getStream() {
+    var data = Stream<List<String>>.fromIterable(
+        [List<String>.generate(20, (index) => "Item $index")]);
     return data;
   }
 
@@ -24,13 +30,14 @@ class HomePageFB extends StatelessWidget {
             icon: Icon(Icons.exit_to_app),
             onPressed: () {
               Constants.prefs.setBool("loggedIn", false);
+
               Navigator.pushReplacementNamed(context, LoginPage.routeName);
             },
           )
         ],
       ),
-      body: FutureBuilder(
-        future: fetchData(),
+      body: StreamBuilder(
+        stream: getStream(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -45,18 +52,16 @@ class HomePageFB extends StatelessWidget {
             case ConnectionState.done:
               if (snapshot.hasError) {
                 return Center(
-                  child: Text("Some Error occured"),
+                  child: Text("Some Error occurred"),
                 );
               }
               return ListView.builder(
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(snapshot.data[index]["title"]),
-                    subtitle: Text("ID: ${snapshot.data[index]["id"]}"),
-                    leading: Image.network(snapshot.data[index]["url"]),
+                    title: Text(snapshot.data?[index] ?? "No data"),
                   );
                 },
-                itemCount: snapshot.data.length,
+                itemCount: snapshot.data?.length ?? 0,
               );
           }
         },

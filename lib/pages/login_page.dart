@@ -4,13 +4,15 @@ import 'package:flutter_application_1/widgets/bg_image.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
+  static String routeName = '/login'; // Initialized routeName
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final userNameController = TextEditingController();
-  final passwordConroller = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Column(
                             children: <Widget>[
                               TextFormField(
+                                controller:
+                                    userNameController, // Added controller
                                 decoration: InputDecoration(
                                   hintText: "Enter username",
                                   labelText: "Username",
@@ -42,6 +46,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               SizedBox(height: 20),
                               TextFormField(
+                                controller:
+                                    passwordController, // Added controller
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: "Enter password",
@@ -57,13 +63,9 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            // context,
-                            //  MaterialPageRoute(
-                            //   builder: (context) => HomePage(),
-                            //  ),
                             Constants.prefs.setBool("LoggedIn", true);
-                            Navigator.pushReplacementNamed(context, "/home");
+                            Navigator.pushReplacementNamed(
+                                context, HomePage.routeName);
                           },
                           child: Text("Sign In"),
                         ),
