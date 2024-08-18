@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Utils/Constants.dart';
-import 'package:flutter_application_1/bg_image.dart';
+import 'package:flutter_application_1/widgets/bg_image.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
